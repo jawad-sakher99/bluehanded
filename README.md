@@ -37,7 +37,7 @@ Steps:
 5. Click **Upload** to flash the board. If it hangs on `Connecting......`, see the next section.
 6. Click **Monitor** to open the Serial Monitor (115200 baud).
 
-Expected output (every 5 seconds):
+Expected output (the scan repeats about every 7 seconds: 5 seconds of scanning plus a short pause):
 
 ```
 Scanning...
@@ -63,4 +63,5 @@ If the upload hangs on `Connecting......`, the board is not in download mode. Do
 
 Notes:
 - Use a USB cable that supports data, not a charge-only cable.
+- If no COM port appears when the board is connected, install the USB-to-serial driver for your board (CP210x or CH340, depending on the board).
 - Close the Serial Monitor before uploading, because it can block the port.
