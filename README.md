@@ -16,6 +16,7 @@ Blue-Handed is an anti-cheat system for exam halls. ESP32 nodes passively scan B
 ## Structure
 
 - `docs/`: project report and documents
+- `esp32-node/`: ESP32 firmware (PlatformIO project, Arduino framework)
 
 ## Uploading code to the ESP32
 
