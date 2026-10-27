@@ -17,7 +17,6 @@ Blue-Handed is an anti-cheat system for exam halls. ESP32 nodes passively scan B
 
 - `docs/`: project report and documents
 - `esp32-node/`: ESP32 firmware (PlatformIO project, Arduino framework)
-- `blue-handed.code-workspace`: VS Code workspace (open this file)
 
 ## Status
 
@@ -31,7 +30,7 @@ Requirements:
 - Git
 
 Steps:
-1. Clone the repository and open **`blue-handed.code-workspace`** in VS Code (File > Open Workspace from File...). It opens the repository root and the `esp32-node` PlatformIO project together. Opening only the repository root does not show the PlatformIO Project Tasks (Build / Upload / Monitor).
+1. Clone the repository and open the **`esp32-node`** folder in VS Code (File > Open Folder...). Open this subfolder, not the repository root, because PlatformIO needs the folder that contains `platformio.ini` to show Project Tasks (Build / Upload / Monitor).
 2. Wait for PlatformIO to finish setting up (the first time it downloads the ESP32 tools and takes a few minutes).
 3. Connect the ESP32 to the computer with the USB cable.
 4. Click **Build** to check that the code compiles (PlatformIO icon > Project Tasks > esp32dev > General > Build).
