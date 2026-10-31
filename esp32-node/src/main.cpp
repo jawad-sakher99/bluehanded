@@ -5,7 +5,8 @@
 #include <math.h>
 
 const int SCAN_SECONDS = 5;
-const int RSSI_AT_1M = -59;
+const int RSSI_AT_1M = -60;
+const int MIN_RSSI = -90;   
 const float PATH_LOSS_N = 2.5;
 
 int totalSeen = 0;
@@ -17,8 +18,11 @@ float rssiToDistance(int rssi) {
 
 class MyCallbacks : public BLEAdvertisedDeviceCallbacks {
   void onResult(BLEAdvertisedDevice device) {
-    totalSeen++;
     int rssi = device.getRSSI();
+    if (rssi< MIN_RSSI){
+      return;
+    }
+    totalSeen++;
     float dist = rssiToDistance(rssi);
 
     const char* name = "(no name)";
