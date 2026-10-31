@@ -85,3 +85,32 @@ IP address: 192.168.x.x
 
 
 Never commit `secrets.h`: it contains your Wi-Fi password and is ignored by Git.
+
+## Wi-Fi and MQTT tests
+
+The project has three PlatformIO environments:
+- `esp32dev` (default): BLE scanner test (`src/main.cpp`). It does not need Wi-Fi settings.
+- `wifi_test`: connects the ESP32 to Wi-Fi and prints its IP address (`src/wifi_test.cpp`).
+- `mqtt_test`: connects to Wi-Fi, then to an MQTT broker, and publishes a message every 2 seconds (`src/mqtt_test.cpp`).
+
+Setup (needed for `wifi_test` and `mqtt_test`):
+1. Copy `esp32-node/include/secrets.example.h` to `esp32-node/include/secrets.h`.
+2. Edit `secrets.h`: your Wi-Fi name and password (2.4 GHz only, the ESP32 does not support 5 GHz) and `MQTT_HOST` (the IP address of the Raspberry Pi).
+3. In PlatformIO Project Tasks, choose the environment (`wifi_test` or `mqtt_test`) > General > Build / Upload / Monitor.
+
+Never commit `secrets.h`: it contains your Wi-Fi password and is ignored by Git.
+
+Raspberry Pi side (MQTT broker, needed for `mqtt_test`):
+1. Install Mosquitto: `sudo apt update && sudo apt install -y mosquitto mosquitto-clients`
+2. Allow connections from the network: create `/etc/mosquitto/conf.d/blue-handed.conf` with the two lines `listener 1883` and `allow_anonymous true`, then run `sudo systemctl restart mosquitto`.
+3. Watch the messages: `mosquitto_sub -h <pi-ip> -t blue-handed/test`
+
+Expected output of `mqtt_test` in the Serial Monitor:
+
+```
+WiFi connected, IP: 192.168.1.xx
+Connecting to MQTT... connected
+Published: hello from esp32 #0
+```
+
+Note: `allow_anonymous true` lets any device on the network connect. It is only for testing on a private network. The final system should use a username/password and TLS.
