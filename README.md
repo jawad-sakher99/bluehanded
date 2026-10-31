@@ -48,7 +48,7 @@ Scan done. Devices seen: 1
 Notes:
 - Keep a Bluetooth device nearby (phone or smartwatch with Bluetooth on), otherwise nothing is listed.
 - BLE devices do not have an IP address. The test prints MAC, name (if advertised), RSSI and an approximate distance.
-- The distance uses the log-distance path loss model with default values (`RSSI_AT_1M = -59`, `PATH_LOSS_N = 2.5`). It is approximate and still needs calibration in the real environment.
+- The distance uses the log-distance path loss model with `RSSI_AT_1M = -60` (measured at 1 m with a phone) and `PATH_LOSS_N = 2.5` (default, not calibrated yet). It is approximate and needs calibration in the real environment. Signals weaker than `MIN_RSSI = -90` dBm are ignored.
 - Many modern phones randomize their MAC address, so the same device may appear with different addresses.
 - The BLE library uses about 90% of the default flash. If we add Wi-Fi and MQTT, we will need a bigger partition table.
 
