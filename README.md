@@ -65,3 +65,23 @@ Notes:
 - Use a USB cable that supports data, not a charge-only cable.
 - If no COM port appears when the board is connected, install the USB-to-serial driver for your board (CP210x or CH340, depending on the board).
 - Close the Serial Monitor before uploading, because it can block the port.
+## Wi-Fi test
+
+The project has two PlatformIO environments:
+- `esp32dev` (default): the BLE scanner test (`src/main.cpp`). It does not need Wi-Fi settings.
+- `wifi_test`: connects the ESP32 to Wi-Fi and prints its IP address (`src/wifi_test.cpp`).
+
+To run `wifi_test`:
+1. Copy `esp32-node/include/secrets.example.h` to `esp32-node/include/secrets.h`.
+2. Put your own network name and password in `secrets.h`. The network must be 2.4 GHz (ESP32 does not support 5 GHz).
+3. In PlatformIO Project Tasks, choose **wifi_test** > General > Build / Upload / Monitor (not `esp32dev`).
+
+Expected output:
+
+=== WiFi Test ===
+Connecting.......
+WiFi: CONNECTED
+IP address: 192.168.x.x
+
+
+Never commit `secrets.h`: it contains your Wi-Fi password and is ignored by Git.
