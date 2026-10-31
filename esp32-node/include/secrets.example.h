@@ -6,3 +6,5 @@
 
 #define WIFI_SSID "your-network-name"
 #define WIFI_PASSWORD "your-password"
+#define MQTT_HOST "your-raspberry-pi-ip"
+#define MQTT_PORT 1883
